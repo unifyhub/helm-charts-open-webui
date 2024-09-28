@@ -1,0 +1,14 @@
+namespace: open-webui
+helm:
+  chart: charts/open-webui
+  releaseName: open-webui
+
+targetCustomizations:
+- name: prod
+  helm:
+    releaseName: open-webui
+    valuesFiles:
+      - values-prod.yaml
+  clusterSelector:
+    matchLabels:
+      env: prod
