@@ -1,13 +1,10 @@
 namespace: open-webui
 
-helm:
-  chart: charts/open-webui
-  releaseName: open-webui
-
 targetCustomizations:
 - name: dev-hub-open-webui
   helm:
-    releaseName: dev-hub-open-webui-release
+    chart: charts/open-webui
+    releaseName: open-webui
     values:
       ingress:
         enabled: true
