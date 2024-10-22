@@ -47,6 +47,9 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /tmp/app-data
+        {{- with .Values.volumeMounts.initContainer }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       enableServiceLinks: false
       automountServiceAccountToken: false
       {{- with .Values.podSecurityContext }}
@@ -72,19 +75,23 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /app/backend/data
+        {{- with .Values.volumeMounts.container }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
         env:
-        - name: OLLAMA_BASE_URLS
+        {{- if or .Values.ollamaUrls .Values.ollama.enabled }}
+        - name: "OLLAMA_BASE_URLS"
           value: {{ include "ollamaBaseUrls" . | quote }}
-        {{ if .Values.pipelines.enabled }}
-        - name: OPENAI_API_BASE_URL
+        {{- else }}
+        - name: "ENABLE_OLLAMA_API"
+          value: "False"
+        {{- end }}
+        - name: "OPENAI_API_BASE_URL"
+        {{- if .Values.pipelines.enabled }}
           value: {{ include "pipelines.serviceEndpoint" . }}
-        {{ else if .Values.openaiBaseApiUrl }}
-        - name: OPENAI_API_BASE_URL
-          value: {{ .Values.openaiBaseApiUrl }}
-        {{ else }}
-        - name: OPENAI_API_BASE_URL
-          value: "https://api.openai.com/v1"
-        {{ end }}
+        {{- else if .Values.openaiBaseApiUrl }}
+          value: {{ .Values.openaiBaseApiUrl | quote }}
+        {{- end }}
         {{- if .Values.extraEnvVars }}
           {{- toYaml .Values.extraEnvVars | nindent 8 }}
         {{- end }}
@@ -117,4 +124,7 @@ spec:
       - name: data
         persistentVolumeClaim:
           claimName: {{ include "open-webui.name" . }}
+      {{- end }}
+      {{- with .Values.volumes }}
+      {{- toYaml . | nindent 6 }}
       {{- end }}
