@@ -1,4 +1,5 @@
 namespace: open-webui
+
 helm:
   chart: charts/open-webui
   releaseName: open-webui
@@ -15,4 +16,6 @@ targetCustomizations:
           kubernetes.io/ingress.class: "traefik"
         host: "open-webui.hub.unifyhub.dev"
         tls: false  # Traefik will handle TLS
-
+    clusterSelector:
+      matchLabels:
+        "unifyhub.cluster.scope": hub
