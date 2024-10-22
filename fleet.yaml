@@ -9,5 +9,5 @@ helm:
       class: "traefik"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      host: "open-webui.hub.unifyhub.dev"
+      host: "open-webui.cpc.unifyhub.dev"
       tls: false  # Traefik handles TLS with wildcard certificate
