@@ -8,4 +8,11 @@ targetCustomizations:
   helm:
     releaseName: dev-hub-open-webui-release
     values:
-      nameOverride: ""
+      ingress:
+        enabled: true
+        class: "traefik"
+        annotations:
+          kubernetes.io/ingress.class: "traefik"
+        host: "open-webui.hub.unifyhub.dev"
+        tls: false  # Traefik will handle TLS
+
