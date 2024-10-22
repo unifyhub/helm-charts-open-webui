@@ -11,3 +11,12 @@ helm:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
       host: "open-webui.cpc.unifyhub.dev"
       tls: false  # Traefik handles TLS with wildcard certificate
+    persistence:
+      enabled: true
+      size: 60Gi  # Adjust size as needed
+      existingClaim: "open-webui-pvc"  # Leave empty if you want to create a new PVC
+      accessModes:
+        - ReadWriteOnce  # If using multiple replicas, set to ReadWriteMany
+      storageClass: "longhorn"  # Specify Longhorn as the storage class
+      selector: { }
+      annotations: { }
