@@ -4,8 +4,8 @@ helm:
   releaseName: open-webui
 
 targetCustomizations:
-- name: prod
+- name: dev-hub-open-webui
   helm:
-    releaseName: open-webui
+    releaseName: dev-hub-open-webui-release
     values:
       nameOverride: ""
