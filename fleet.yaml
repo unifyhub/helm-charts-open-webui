@@ -4,6 +4,7 @@ helm:
   chart: charts/open-webui
   releaseName: open-webui
   values:
+    replicaCount: 2
     ingress:
       enabled: true
       class: "traefik"
@@ -16,7 +17,5 @@ helm:
       size: 60Gi  # Adjust size as needed
       existingClaim: "open-webui-pvc"  # Leave empty if you want to create a new PVC
       accessModes:
-        - ReadWriteOnce  # If using multiple replicas, set to ReadWriteMany
+        - ReadWriteMany  # If using multiple replicas, set to ReadWriteMany
       storageClass: "longhorn"  # Specify Longhorn as the storage class
-      selector: { }
-      annotations: { }
