@@ -7,8 +7,5 @@ targetCustomizations:
 - name: prod
   helm:
     releaseName: open-webui
-    valuesFiles:
-      - values-prod.yaml
-  clusterSelector:
-    matchLabels:
-      env: prod
+    values:
+      nameOverride: ""
