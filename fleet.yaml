@@ -15,4 +15,3 @@ helm:
     persistence:
       enabled: true
       size: 60Gi  # Adjust size as needed
-      existingClaim: "open-webui-pvc"  # Leave empty if you want to create a new PVC
