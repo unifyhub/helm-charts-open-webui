@@ -24,15 +24,16 @@ helm:
          type: 'nvidia'
          nvidiaResource: "nvidia.com/gpu"
          number: 1
-       runtimeClassName: nvidia
+       runtimeClassName: "nvidia"
        models:
          - llama3
       nodeSelector:
-        gpu/arch: ada
+        gpu/arch: "ada"
         gpu/memory: "48"
       persistentVolume:
        enabled: true
+       size: "60Gi"
 #       volumeName: "example-pre-existing-pv-created-by-smb-csi"
     persistence:
       enabled: true
-      size: 60Gi  # Adjust size as needed
+      size: "60Gi"
