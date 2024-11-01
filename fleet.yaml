@@ -28,8 +28,8 @@ helm:
        models:
          - llama3
       nodeSelector:
-        gpu/arch: "ada"
-        gpu/memory: "48"
+        "unifyhub.gpu.arch": "ada"
+        "unifyhub.gpu.memory": "48"
       persistentVolume:
        enabled: true
        size: "60Gi"
