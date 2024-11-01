@@ -1,5 +1,13 @@
 namespace: open-webui
 
+# Namespace labels to apply (optional, customize as needed)
+namespaceLabels:
+  project: unifyhub
+  environment: dev
+
+# Namespace annotations to apply (optional, customize as needed)
+namespaceAnnotations:
+  owner: devops-team
 
 helm:
   chart: charts/open-webui
@@ -10,29 +18,17 @@ helm:
       class: "traefik"
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-      host: "open-webui.cpc.unifyhub.dev"
+      host: "open-webui.hub.unifyhub.dev"
       tls: false  # Traefik handles TLS with wildcard certificate
     ollama:
-      # -- Automatically install Ollama Helm chart from https://otwld.github.io/ollama-helm/. Use [Helm Values](https://github.com/otwld/ollama-helm/#helm-values) to configure
-      enabled: true
-      # -- If enabling embedded Ollama, update fullnameOverride to your desired Ollama name value, or else it will use the default ollama.name value from the Ollama chart
-      fullnameOverride: "open-webui-ollama"
-      # -- Example Ollama configuration with nvidia GPU enabled, automatically downloading a model, and deploying a PVC for model persistence
-      ollama:
-       gpu:
-         enabled: true
-         type: 'nvidia'
-         nvidiaResource: "nvidia.com/gpu"
-         number: 1
-       runtimeClassName: "nvidia"
-       models:
-         - llama3
-      nodeSelector:
-        nvidia.com/gpu.product: "NVIDIA-RTX-6000-Ada-Generation"
-      persistentVolume:
-       enabled: true
-       size: "400Gi"
-       volumeName: "pvc-ollama"
+      enabled: false
+    ollamaUrls:
+      - "https://ollama.cpc.unifyhub.dev"
     persistence:
       enabled: true
       size: "60Gi"
+
+# Optional strategy to manage rolling updates and deployments across clusters
+rolloutStrategy:
+  maxUnavailable: 10%
+  autoPartitionSize: 20%
