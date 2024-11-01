@@ -31,7 +31,7 @@ helm:
         nvidia.com/gpu.product: "NVIDIA-RTX-6000-Ada-Generation"
       persistentVolume:
        enabled: true
-       size: 400
+       size: "400Gi"
        volumeName: "pvc-ollama"
     persistence:
       enabled: true
