@@ -31,7 +31,7 @@ helm:
         nvidia.com/gpu.product: "NVIDIA-RTX-6000-Ada-Generation"
       persistentVolume:
        enabled: true
-       size: "60Gi"
+       size: "250Gi"
 #       volumeName: "example-pre-existing-pv-created-by-smb-csi"
     persistence:
       enabled: true
