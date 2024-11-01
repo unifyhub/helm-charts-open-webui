@@ -28,8 +28,7 @@ helm:
        models:
          - llama3
       nodeSelector:
-        "unifyhub.gpu.arch": "ada"
-        "unifyhub.gpu.memory": "48"
+        nvidia.com/gpu.product: "NVIDIA-RTX-6000-Ada-Generation"
       persistentVolume:
        enabled: true
        size: "60Gi"
