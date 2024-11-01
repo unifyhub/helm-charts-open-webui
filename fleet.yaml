@@ -22,12 +22,16 @@ helm:
        gpu:
          enabled: true
          type: 'nvidia'
+         nvidiaResource: "nvidia.com/gpu"
          number: 1
+       runtimeClassName: nvidia
        models:
          - llama3
-      runtimeClassName: nvidia
-#      persistentVolume:
-#       enabled: true
+      nodeSelector:
+        gpu/arch: ada
+        gpu/memory: "48"
+      persistentVolume:
+       enabled: true
 #       volumeName: "example-pre-existing-pv-created-by-smb-csi"
     persistence:
       enabled: true
