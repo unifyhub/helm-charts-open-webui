@@ -19,7 +19,7 @@ helm:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         traefik.ingress.kubernetes.io/websocket: "true"
-        traefik.ingress.kubernetes.io/router.middlewares: "open-webui-websocket-headers@kubernetescrd"
+#        traefik.ingress.kubernetes.io/router.middlewares: "open-webui-websocket-headers@kubernetescrd"
       host: "open-webui.hub.unifyhub.dev"
       tls: false  # Traefik handles TLS with wildcard certificate
     ollama:
