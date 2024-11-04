@@ -11,7 +11,7 @@ namespaceAnnotations:
 
 helm:
   chart: charts/open-webui
-  releaseName: open-webui
+  releaseName: v1
   values:
     ingress:
       enabled: true
@@ -19,7 +19,7 @@ helm:
       annotations:
         traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         traefik.ingress.kubernetes.io/websocket: "true"
-        traefik.ingress.kubernetes.io/router.middlewares: "websocket-header@kubernetescrd"
+        traefik.ingress.kubernetes.io/router.middlewares: "open-webui-websocket-header@kubernetescrd"
       host: "open-webui.hub.unifyhub.dev"
       tls: false  # Traefik handles TLS with wildcard certificate
     ollama:
